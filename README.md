@@ -41,5 +41,3 @@ gruntコマンドを叩く必要があります。
 
 
 [twitter: @_wats](https://twitter.com/_wats)
-
-## 追記
