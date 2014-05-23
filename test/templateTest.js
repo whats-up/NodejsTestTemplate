@@ -1,6 +1,6 @@
 var assert, hogeFunc, _anderScore;
 
-assert = require('assert');
+assert = require('power-assert');
 
 _anderScore = require('underscore');
 
@@ -11,6 +11,7 @@ describe("template Test", function() {
   it('hoge', function() {
     var text;
     text = hogeFunc();
+    assert(text === 'hage');
     assert.equal(text, 'hage');
     assert.notEqual(text, 'hoge');
     assert.deepEqual(text, 'hage');
@@ -24,6 +25,14 @@ describe("template Test", function() {
     return assert.ok(text.match('ha..'));
   });
   return it('fail', function() {
-    return assert.fail('hoge', 'hage', 'kaze');
+    var text;
+    text = {
+      hoge: {
+        hage: {
+          kaze: 'fool'
+        }
+      }
+    };
+    return assert(text.hoge.hage.kaze === 'baka');
   });
 });

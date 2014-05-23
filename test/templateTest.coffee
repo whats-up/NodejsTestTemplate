@@ -1,4 +1,4 @@
-assert = require 'assert'
+assert = require('power-assert')
 _anderScore= require 'underscore'
 
 hogeFunc = require("../js/template").hoge
@@ -7,6 +7,7 @@ describe "template Test", ->
   describe "hoges", ->
   it 'hoge',()->
     text = hogeFunc()
+    assert text is 'hage'
     assert.equal text,'hage'
     assert.notEqual text, 'hoge'
     assert.deepEqual text, 'hage'
@@ -15,4 +16,5 @@ describe "template Test", ->
     assert.doesNotThrow ()-> return true
     assert.ok text.match 'ha..'
   it 'fail',()->
-    assert.fail 'hoge','hage','kaze'
+    text = {hoge:{hage:{kaze:'fool'}}}
+    assert text.hoge.hage.kaze is'baka'

@@ -1,12 +1,15 @@
 module.exports = (grunt)->
+  pkg= grunt.file.readJSON 'package.json'
   grunt.initConfig
-    pkg: grunt.file.readJSON 'package.json'
     watch:
       test:
         files: ['coffee/**/*.coffee','test/**/*.coffee','ex/**/*.coffee']
         tasks: 'coffee'
       mocha:
         files: ['test/**/*.js']
+        tasks: 'espower'
+      power_assert:
+        files: ['espowered/**/*.js']
         tasks: 'simplemocha'
     coffee:
       compile:
@@ -34,11 +37,23 @@ module.exports = (grunt)->
         ]
     simplemocha:
       all:
-        src: ['test/**/*.js']
+        src: ['espowered/**/*.js']
       options:
         reporter: 'spec'
         ui: 'bdd'
+    espower:
+      test:
+        files: [{
+           expand: true,
+           cwd: 'test/',
+           src: ['**/*.js'],
+           dest: 'espowered/',
+           ext: '.js'
+        }]
 
+  for taskName of pkg.devDependencies
+    if (taskName.substr(0, 6) == 'grunt-')
+      grunt.loadNpmTasks(taskName)
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-simple-mocha'
