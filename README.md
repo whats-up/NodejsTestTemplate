@@ -7,7 +7,7 @@ CoffeeScriptも使えます。
 
 `npm install -g mocha`
 
-[Mocha - (HP)](http://visionmedia.github.io/mocha/)  
+[Mocha - (HP)](http://mochajs.org/)  
 [mocha - (npm)](https://www.npmjs.org/package/mocha)  
 
 あと、underScoreやなんやかんやがそのまま使えます。
